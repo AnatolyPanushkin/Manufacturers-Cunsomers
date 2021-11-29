@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Manufact-Cunsomer/1.0.0": {
+        "runtime": {
+          "Manufact-Cunsomer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Manufact-Cunsomer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
