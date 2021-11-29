@@ -63,10 +63,11 @@ namespace Manufacturers_Cunsomers
             {
                 _manufacturerMustWait.WaitOne();
                 //Добавляем новую задачу
-                Thread.Sleep(2000);
                 buffer.Enqueue(_goals);
                 ConsoleHelper.WriteToConsole($"Manufacturer {Thread.CurrentThread.ManagedThreadId} add new goal");
+                Thread.Sleep(100);
                 _manufacturerMustWait.ReleaseMutex();
+                ManufacturerWait();
             }
             else
             {
@@ -78,20 +79,22 @@ namespace Manufacturers_Cunsomers
         {
             if (buffer.Count>=maxSize)
                 ConsoleHelper.WriteToConsole($"buffer is full!");
-            Thread.Sleep(2000);
+            Thread.Sleep(100);
             CreateGoals();
         }
 
 
         static void CompleteGoal()
         {
+            
             if (buffer.Count>0)
             {
                 _cunsomerMustWait.WaitOne();
-                Thread.Sleep(2000);
                 buffer.Dequeue();
                 ConsoleHelper.WriteToConsole($"Cunsomer {Thread.CurrentThread.ManagedThreadId} complete task");
+                Thread.Sleep(100);
                 _cunsomerMustWait.ReleaseMutex();
+                CunsomerWait();
             }
             else
             {
@@ -101,9 +104,10 @@ namespace Manufacturers_Cunsomers
 
         static void CunsomerWait()
         {
+            
             if (buffer.Count==0)
                 ConsoleHelper.WriteToConsole("buffer is empty!");
-            Thread.Sleep(2000);
+            Thread.Sleep(100);
             CompleteGoal();
         }
          
