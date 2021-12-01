@@ -10,9 +10,7 @@ namespace Manufacturers_Cunsomers
         private static Mutex _cunsomerMustWait = new Mutex();
         //производители должны подождать
         private static Mutex _manufacturerMustWait = new Mutex();
-        //флаг создания задачи
-        private static bool _manufact = false;
-        
+
         private static Queue<Goals> buffer = new Queue<Goals>();
         private static Goals _goals = new Goals();
         private static int maxSize = 3;
@@ -46,11 +44,13 @@ namespace Manufacturers_Cunsomers
             {
                 v.Join();
             }
-
+            
             foreach (var v in manufacturers)
             {
                 v.Join();
             }
+            
+            
 
             
             Console.ReadLine();
@@ -110,8 +110,5 @@ namespace Manufacturers_Cunsomers
             Thread.Sleep(100);
             CompleteGoal();
         }
-         
-        
-        
     }
 }
